@@ -1,0 +1,38 @@
+[user]
+    name  = Zoë Ketley
+    email = 25149855+zketley@users.noreply.github.com
+[core]
+    editor = code --wait
+    autocrlf = false
+[alias]
+    st = status
+    ci = commit
+    cim = commit --message
+    co = checkout
+    br = branch
+    ec = config --global -e
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    cob = checkout -b
+    cm = !git add -A && git commit -m
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    wip = commit -am "WIP"
+    undo = reset HEAD~1 --mixed
+    amend = commit -a --amend
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs git branch -d; }; f"
+    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+    llog = log --date=local
+    changes=diff --name-status -r
+    diffstat=diff --stat -r
+    prune-all = !git remote | xargs -n 1 git remote prune
+    edit-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; vim `f`"
+    add-unmerged = "!f() { git diff --name-status --diff-filter=U | cut -f2 ; }; git add `f`"
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    forkdiff = !bash -c 'git diff $(git merge-base "$1" "$2") "$2" "${@: 3}" ' -
+    untrack = rm --cache --
+    com = "!f() { git checkout ${1-master} }; f"
+    ms = merge --squash
+    brd = branch -D
+    addf = add -f
+    caa = commit -a --amend -C HEAD
+    brename = git branch -m
