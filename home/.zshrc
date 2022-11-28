@@ -9,8 +9,8 @@ fi
 source $HOME/.antigenrc
 
 # aliases
-alias gb='git-branch'
-alias gco='fzf-git-checkout'
+alias gb='git branch'
+alias gco='git checkout'
 alias bat=batcat
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
